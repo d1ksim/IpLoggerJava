@@ -6,6 +6,7 @@ import com.example.iplogger.entity.LoggerDataEntity;
 import com.example.iplogger.entity.LoggersEntity;
 import com.example.iplogger.service.LoggersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ import java.util.UUID;
 @RequestMapping(value = "/api/v1")
 public class LoggerController {
     private final LoggersService loggersService;
+
+    @Value("${application.url-address}")
+    private String urlAddress;
 
     @Autowired
     public LoggerController(LoggersService loggersService) {
@@ -30,7 +34,7 @@ public class LoggerController {
 
         LoggerCreateResponseDto response = LoggerCreateResponseDto.builder()
                 .loggerId(newLogger.getUuid())
-                .loggerLink("http://localhost:8080/" + newLogger.getUuid())
+                .loggerLink(urlAddress + newLogger.getUuid())
                 .build();
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }

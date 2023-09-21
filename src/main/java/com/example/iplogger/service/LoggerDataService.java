@@ -20,8 +20,8 @@ public class LoggerDataService {
         this.loggerDataRepo = loggerDataRepo;
     }
 
-    public LoggerDataEntity createLoggerData(LoggerDataEntity entity) {
-        return loggerDataRepo.save(entity);
+    public void createLoggerData(LoggerDataEntity entity) {
+        loggerDataRepo.save(entity);
     }
 
     public List<LoggerDataEntity> getAllLoggerDataByUuid(LoggersEntity loggerData) {
