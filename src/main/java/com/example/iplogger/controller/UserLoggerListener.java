@@ -34,7 +34,6 @@ public class UserLoggerListener {
         if (requestUserIp != null)
             loggerDataService.createLoggerData(new LoggerDataEntity(loggersEntity, requestUserIp));
 
-        // FIXME: Статус 403, найти решение.
         String redirectUrl = loggersService.getLoggerRedirectUrl(UUID.fromString(loggerUuid));
         return new RedirectView(redirectUrl);
     }
