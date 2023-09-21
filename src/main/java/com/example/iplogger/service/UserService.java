@@ -16,8 +16,8 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public UserEntity createUser(UserEntity userEntity) {
-        return userRepo.save(userEntity);
+    public void createUser(UserEntity userEntity) {
+        userRepo.save(userEntity);
     }
 
     public UserEntity findByLogin(String login) {
