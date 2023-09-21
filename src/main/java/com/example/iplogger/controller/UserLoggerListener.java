@@ -31,11 +31,10 @@ public class UserLoggerListener {
         String requestUserIp = request.getHeader("X-FORWARDED-FOR");
         LoggersEntity loggersEntity = loggersService.getLoggerByUuid(UUID.fromString(loggerUuid));
 
-        loggerDataService.createLoggerData(new LoggerDataEntity(
-                loggersEntity, requestUserIp == null ? "None" : requestUserIp
-        ));
+        if (requestUserIp != null)
+            loggerDataService.createLoggerData(new LoggerDataEntity(loggersEntity, requestUserIp));
 
-        // FIXME: Статус 403, пизда ебаная.
+        // FIXME: Статус 403, найти решение.
         String redirectUrl = loggersService.getLoggerRedirectUrl(UUID.fromString(loggerUuid));
         return new RedirectView(redirectUrl);
     }
