@@ -17,10 +17,12 @@ public class UserService {
     }
 
     public void createUser(UserEntity userEntity) {
-        userRepo.save(userEntity);
+        if (findByUsername(userEntity.getUsername()) == null) {
+            userRepo.save(userEntity);
+        }
     }
 
-    public UserEntity findByLogin(String login) {
-        return userRepo.findByLogin(login);
+    public UserEntity findByUsername(String login) {
+        return userRepo.findByUsername(login);
     }
 }
