@@ -23,6 +23,8 @@ public class AuthController {
     private final ApplicationContext context;
     private final TokenService tokenService;
 
+    // FIXME: Добавить try / cath, исправить дерьмо в коде.
+
     @Autowired
     public AuthController(UserService userService, ApplicationContext context, TokenService tokenService) {
         this.userService = userService;
